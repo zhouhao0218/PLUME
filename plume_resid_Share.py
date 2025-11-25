@@ -76,8 +76,8 @@ class PlumeAB_share(nn.Module):
                 assert self.Cu is not None
                 device = self.base_linear.weight.device
                 I = torch.eye(self.r).to(x.dtype).to(device)
-                W_low = self.B @ (I + self.cu_coefficient * self.Cu) @ self.A   # (out, r) @ (r, r) @ (r, in) -> (out, in)    //调Cu系数
-                W_resid = self.resid_coefficient * (self.Au) @ (self.Bu.T)                       #调resid系数
+                W_low = self.B @ (I + self.cu_coefficient * self.Cu) @ self.A   # (out, r) @ (r, r) @ (r, in) -> (out, in)    
+                W_resid = self.resid_coefficient * (self.Au) @ (self.Bu.T)                       
                 W_low += W_resid
                 W_low += self.qb.T @ self.qa.T
                 
